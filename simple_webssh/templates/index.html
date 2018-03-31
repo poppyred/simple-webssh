@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Simple Webssh</title>
+    <link href="/static/img/favicon.png" rel="icon" type="image/png">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/home-template.css" rel="stylesheet">
+    <link href="/static/css/xterm.min.css" rel="stylesheet">
+    <link href="/static/css/fullscreen.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
+    <!--<div class="container">-->
+        <!--<div class="navbar-header">-->
+            <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"-->
+                    <!--aria-expanded="false" aria-controls="navbar">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <!--<a class="navbar-brand" href="#">Simple Webssh</a>-->
+        <!--</div>-->
+        <!--<div id="navbar" class="collapse navbar-collapse">-->
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active"><a href="">Home</a></li>-->
+                <!--<li><a href="">ping</a></li>-->
+                <!--<li><a href="">telnet</a></li>-->
+            <!--</ul>-->
+        <!--</div>&lt;!&ndash;/.nav-collapse &ndash;&gt;-->
+    <!--</div>-->
+<!--</nav>-->
+<div class="container ">
+    <div class="row home-template">
+        <form id="connect" class="form-horizontal" method="post" action="" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="hostname" class="col-md-2 control-label">主机名：</label>
+                <div class="col-md-6">
+                    <input class="form-control" type="text" name="hostname" value="127.0.0.1" placeholder="请输入主机名">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="port" class="col-md-2 control-label">端口：</label>
+                <div class="col-md-6">
+                    <input class="form-control" type="text" name="port" value="22" placeholder="请输入端口">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="username" class="col-md-2 control-label">用户名：</label>
+                <div class="col-md-6">
+                    <input class="form-control" type="text" name="username" value="" placeholder="请输入用户名">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-md-2 control-label">密码：</label>
+                <div class="col-md-6">
+                    <input class="form-control" type="password" name="password" placeholder="请输入密码" value="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="private_key" class="col-md-2 control-label">私钥：</label>
+                <div class="col-md-6">
+                    <input type="file" name="private_key" value="">
+                    <p class="help-block">如果选择私钥，并且私钥编码，那么密码将用来对私钥进行解码，否则不进行解码的操作.如果不选择私钥，那么将用用户名密码进行连接。</p>
+                </div>
+            </div>
+            {% module xsrf_form_html() %}
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-2">
+                    <button type="submit" class="btn btn-primary">连接主机</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+    <div id="status"></div>
+    <div id="terminal"></div>
+</div>
+
+
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/popper.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/xterm.min.js"></script>
+<script src="/static/js/fullscreen.min.js"></script>
+<script src="/static/js/main.js"></script>
+</body>
+</html>
